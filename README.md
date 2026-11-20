@@ -19,15 +19,16 @@ dan JavaScript; formulir kontak serta kotak masuk admin memakai PHP dan MySQL.
    Ikuti prompt untuk memasukkan kata sandi admin; kata sandi tidak disimpan di kode.
 6. Buka `http://localhost/Projek-web-sejarah-kabupaten-Barru-/`.
 
-Formulir kontak tersedia di `/kontak/` dan halaman admin di `/admin/`.
+Formulir kontak lokal tersedia di `/kontak/` dan halaman admin lokal di `/admin/`.
 
 ## Hosting
 
-GitHub dapat menyimpan source code proyek ini. GitHub Pages hanya melayani file statis
-dan tidak menjalankan PHP atau MySQL, sehingga formulir kontak dan halaman admin tidak
-berfungsi di sana. Untuk fitur lengkap, gunakan hosting yang mendukung PHP dengan PDO
-MySQL serta MySQL/MariaDB, lalu impor skema database dan atur variabel lingkungan
-koneksi di hosting tersebut.
+GitHub dapat menyimpan source code proyek ini. Netlify melayani file statis dan tidak
+menjalankan PHP atau MySQL. Halaman kontak statis di `/kontak/index.html` memakai Netlify
+Forms; aktifkan form detection di pengaturan situs Netlify, lalu lihat kiriman pada
+`Forms` → `Submissions` di dashboard. Halaman admin PHP dan database tetap memerlukan
+hosting yang mendukung PHP dengan PDO MySQL serta MySQL/MariaDB. Untuk GitHub Pages,
+formulir Netlify tidak tersedia kecuali situs dipindahkan ke Netlify.
 
 Jangan gunakan akun database `root` di produksi. Buat akun khusus dengan izin terbatas,
 gunakan kata sandi kuat dan HTTPS, serta jangan commit file `.env` atau kredensial.

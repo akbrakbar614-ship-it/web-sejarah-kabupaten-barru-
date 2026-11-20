@@ -79,7 +79,7 @@
     ["Naskah Kuno", "Lontara dan naskah peninggalan", "peninggalan.html#naskah"],
     ["Galeri", "Foto dan video", "galeri.html"],
     ["Tentang Kami", "Profil situs dan tim penyusun", "tentang.html"],
-    ["Kontak", "Kirim saran atau koreksi", "kontak/index.php"]
+    ["Kontak", "Kirim saran atau koreksi", "kontak/index.html"]
   ];
   const overlay = $("#searchOverlay"), input = $("#searchInput"), hasil = $("#searchResults");
 

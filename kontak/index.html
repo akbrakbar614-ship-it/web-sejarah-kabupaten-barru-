@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hubungi tim penyusun situs Sejarah Kabupaten Barru.">
+  <title>Kontak · Kabupaten Barru</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/images.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/menu.css">
+  <link rel="stylesheet" href="../assets/css/kontak.css">
+  <link rel="stylesheet" href="../assets/css/animasi.css">
+</head>
+<body data-page="kontak" data-root-prefix="../">
+  <header class="site-header" id="top">
+    <a class="brand" href="../index.html" aria-label="Sejarah Kabupaten Barru, beranda">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span><strong>Sejarah Kabupaten</strong><small>BARRU · SULAWESI SELATAN</small></span>
+    </a>
+    <nav class="main-nav" id="mainNav" aria-label="Navigasi utama">
+      <a href="../index.html" class="nav-link">Home</a>
+      <a href="../sejarah.html" class="nav-link">Sejarah</a>
+      <a href="../tokoh.html" class="nav-link">Tokoh Sejarah</a>
+      <a href="../budaya.html" class="nav-link">Budaya</a>
+      <a href="../galeri.html" class="nav-link">Galeri</a>
+      <a href="index.html" class="nav-link active" aria-current="page">Kontak</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="search-btn" id="searchOpen" aria-label="Cari di situs ini">
+        <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="9" r="6"/><path d="m14 14 4 4"/></svg>
+        <span>Cari...</span><kbd>Ctrl K</kbd>
+      </button>
+      <a class="nav-cta" href="../sejarah.html#asal-usul">Mulai Baca</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Buka navigasi" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-modal" role="dialog" aria-modal="true" aria-label="Pencarian">
+      <input id="searchInput" type="search" placeholder="Cari halaman atau bagian sejarah..." autocomplete="off">
+      <ul class="search-results" id="searchResults"></ul>
+    </div>
+  </div>
+
+  <main class="contact-main">
+    <section class="contact-card" aria-labelledby="contact-title">
+      <p class="contact-kicker">Hubungi Kami</p>
+      <h1 id="contact-title">Kirim saran atau koreksi</h1>
+      <p class="contact-intro">Punya masukan tentang informasi sejarah di situs ini? Kirimkan pesan kepada tim penyusun.</p>
+
+      <form name="kontak" method="POST" action="terkirim.html" data-netlify="true" netlify-honeypot="bot-field" class="contact-form">
+        <input type="hidden" name="form-name" value="kontak">
+        <div class="contact-trap" aria-hidden="true">
+          <label for="bot-field">Jangan isi kolom ini</label>
+          <input id="bot-field" type="text" name="bot-field" tabindex="-1" autocomplete="off">
+        </div>
+
+        <label for="nama">Nama</label>
+        <input id="nama" name="nama" type="text" maxlength="100" autocomplete="name" required>
+
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" maxlength="254" autocomplete="email" required>
+
+        <label for="subjek">Topik</label>
+        <input id="subjek" name="subjek" type="text" maxlength="150" required>
+
+        <label for="pesan">Pesan</label>
+        <textarea id="pesan" name="pesan" rows="6" maxlength="10000" required></textarea>
+
+        <button type="submit">Kirim pesan</button>
+      </form>
+
+      <p class="contact-privacy">Pesan dikirim melalui Netlify Forms untuk ditinjau pengelola situs. Jangan kirimkan kata sandi atau informasi pribadi yang sensitif.</p>
+    </section>
+  </main>
+  <footer class="footer" id="kontak">
+    <a href="#top">↑ Kembali ke atas</a>
+    <p>SEJARAH BARRU | 08</p>
+  </footer>
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/animasi.js"></script>
+</body>
+</html>

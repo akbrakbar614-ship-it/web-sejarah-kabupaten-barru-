@@ -154,7 +154,7 @@ if (!empty($_SESSION['admin_id'])) {
       <strong>Sejarah Kabupaten Barru</strong>
       <span>PENGELOLAAN SARAN</span>
     </a>
-    <a class="admin-public-link" href="../kontak/index.php">Lihat halaman kontak</a>
+    <a class="admin-public-link" href="../kontak/index.html">Lihat halaman kontak</a>
   </header>
 
   <main class="admin-main">
