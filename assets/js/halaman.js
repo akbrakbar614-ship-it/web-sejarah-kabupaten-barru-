@@ -16,13 +16,18 @@
     const t = +el.dataset.count; if (kurangi) { el.textContent = t; return; }
     const m = performance.now(); (function f(n) { const p = Math.min((n - m) / 1200, 1); el.textContent = Math.round(t * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(f); })(m);
   };
-  const co = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { hitung(e.target); co.unobserve(e.target); } }));
-  $$("[data-count]").forEach(el => co.observe(el));
+  const angka = $$("[data-count]");
+  if ("IntersectionObserver" in window) {
+    const co = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { hitung(e.target); co.unobserve(e.target); } }));
+    angka.forEach(el => co.observe(el));
+  } else angka.forEach(hitung);
 
   // Tombol chip aktif sesuai bagian
   const chips = $$(".p-chips a");
-  const so = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) chips.forEach(c => c.classList.toggle("on", c.getAttribute("href") === "#" + e.target.id)); }), { rootMargin: "-35% 0px -55% 0px" });
-  chips.forEach(c => { const s = document.querySelector(c.getAttribute("href")); if (s) so.observe(s); });
+  if ("IntersectionObserver" in window) {
+    const so = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) chips.forEach(c => c.classList.toggle("on", c.getAttribute("href") === "#" + e.target.id)); }), { rootMargin: "-35% 0px -55% 0px" });
+    chips.forEach(c => { const s = document.querySelector(c.getAttribute("href")); if (s) so.observe(s); });
+  }
 
   // Perbesar foto galeri
   const tiles = $$(".g-tile");

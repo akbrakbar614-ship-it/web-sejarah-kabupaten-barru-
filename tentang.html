@@ -1,128 +1,860 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Profil situs dan tim penyusun Sejarah Kabupaten Barru.">
+
+  <meta
+    name="description"
+    content="Profil situs dan tim penyusun Sejarah Kabupaten Barru."
+  >
+
   <title>Tentang Kami · Kabupaten Barru</title>
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,500&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- CSS -->
   <link rel="stylesheet" href="assets/css/images.css">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/menu.css">
   <link rel="stylesheet" href="assets/css/halaman.css">
+  <link rel="stylesheet" href="assets/css/tentang.css">
+  <link rel="stylesheet" href="assets/css/animasi.css">
 </head>
+
 <body data-page="tentang">
+
+<!-- =====================================================
+     HEADER DAN NAVIGASI
+===================================================== -->
+
 <header class="site-header" id="top">
-  <a class="brand" href="index.html" aria-label="Sejarah Kabupaten Barru, beranda">
+
+  <a class="brand" href="index.html" aria-label="Beranda Sejarah Kabupaten Barru">
     <span class="brand-mark" aria-hidden="true"></span>
-    <span><strong>Sejarah Kabupaten</strong><small>BARRU · SULAWESI SELATAN</small></span>
+
+    <span>
+      <strong>Sejarah Kabupaten</strong>
+      <small>BARRU · SULAWESI SELATAN</small>
+    </span>
   </a>
 
   <nav class="main-nav" id="mainNav" aria-label="Navigasi utama">
-    <a href="index.html" class="nav-link" data-page-link="home">Home</a>
+
+    <a href="index.html" class="nav-link" data-page-link="home">
+      Home
+    </a>
+
+    <!-- SEJARAH -->
     <div class="dropdown">
-      <button class="dropdown-toggle" data-page-link="sejarah" id="historyToggle" aria-expanded="false" aria-controls="historyMenu">
-        Sejarah Kabupaten Barru <span class="chevron">⌄</span>
+
+      <button
+        class="dropdown-toggle"
+        data-page-link="sejarah"
+        id="historyToggle"
+        aria-expanded="false"
+        aria-controls="historyMenu"
+      >
+        Sejarah Kabupaten Barru
+        <span class="chevron">⌄</span>
       </button>
+
       <div class="dropdown-menu mega" id="historyMenu">
-          <a class="menu-feature" href="sejarah.html#pembentukan">
-            <svg viewBox="0 0 200 130" role="img" aria-label="Ilustrasi rumah tradisional di perbukitan" preserveAspectRatio="xMidYMid slice">
-              <rect width="200" height="130" fill="#a8d2d1"/><rect y="62" width="200" height="68" fill="#d7d99b"/>
-              <circle cx="152" cy="30" r="15" fill="#f6df94"/>
-              <path d="M-20 105Q40 50 110 90T220 85V130H-20Z" fill="#769b68"/>
-              <path d="M40 130Q120 70 220 112V130Z" fill="#47794d"/>
-              <path d="M62 62 100 30l38 32-5 6-33-25-33 25Z" fill="#714c35"/>
-              <rect x="70" y="64" width="60" height="30" fill="#e8d6a5" stroke="#6d5238" stroke-width="3"/>
-              <rect x="80" y="70" width="10" height="16" fill="#466b4b"/><rect x="95" y="70" width="10" height="16" fill="#466b4b"/><rect x="110" y="70" width="10" height="16" fill="#466b4b"/>
-              <path d="M76 94v14M124 94v14" stroke="#6b4b35" stroke-width="3"/>
-            </svg>
-            <span class="feature-text"><strong>Hari Jadi Barru</strong><small>20 Februari 1960, lahirnya Kabupaten Barru.</small></span>
+
+        <a class="menu-feature" href="sejarah.html#pembentukan">
+          <svg viewBox="0 0 200 130" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="130" fill="#a8d2d1"/><path d="M0 94 48 52l43 38 47-51 62 55v36H0Z" fill="#47794d"/></svg>
+          <span class="feature-text">
+            <strong>Hari Jadi Barru</strong>
+            <small>20 Februari 1960, lahirnya Kabupaten Barru.</small>
+          </span>
+        </a>
+
+        <div class="menu-list">
+
+          <a href="sejarah.html#asal-usul">
+            <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+            <span class="mt">
+              <strong>Asal Usul Barru</strong>
+              <small>Pengantar dan empat wilayah kerajaan.</small>
+            </span>
           </a>
-          <div class="menu-list">
-            <a href="sejarah.html#asal-usul"><span class="mi"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span class="mt"><strong>Asal Usul Barru</strong><small>Pengantar dan empat wilayah kerajaan</small></span></a>
-            <a href="sejarah.html#masa-kerajaan"><span class="mi"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18h18M4 18 3 7l5 4 4-6 4 6 5-4-1 11"/></svg></span><span class="mt"><strong>Masa Kerajaan</strong><small>Berru, Tanete, Soppeng Riaja, Mallusetasi</small></span></a>
-            <a href="sejarah.html#masa-penjajahan"><span class="mi"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V9l8-5 8 5v12M9 21v-6h6v6M3 21h18"/></svg></span><span class="mt"><strong>Masa Penjajahan</strong><small>Onder Afdeling Barru di era Belanda</small></span></a>
-            <a href="sejarah.html#masa-kemerdekaan"><span class="mi"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4M5 4h12l-2 4 2 4H5"/></svg></span><span class="mt"><strong>Masa Kemerdekaan</strong><small>Dari Self Bestuur menjadi Swapraja</small></span></a>
-            <a href="sejarah.html#pembentukan"><span class="mi"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4m8-4v4"/></svg></span><span class="mt"><strong>Pembentukan Kabupaten</strong><small>Hari jadi 20 Februari 1960</small></span></a>
-            <a href="sejarah.html#timeline"><span class="mi"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span class="mt"><strong>Timeline Sejarah</strong><small>Ringkasan perjalanan dari masa ke masa</small></span></a>
-          </div>
+
+          <a href="sejarah.html#masa-kerajaan">
+            <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 18h18M4 18 3 7l5 4 4-6 4 6 5-4-1 11"/></svg></span>
+            <span class="mt">
+              <strong>Masa Kerajaan</strong>
+              <small>Berru, Tanete, Soppeng Riaja, Mallusetasi.</small>
+            </span>
+          </a>
+
+          <a href="sejarah.html#masa-penjajahan">
+            <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 21V9l8-5 8 5v12M9 21v-6h6v6M3 21h18"/></svg></span>
+            <span class="mt">
+              <strong>Masa Penjajahan</strong>
+              <small>Onder Afdeling Barru di era Belanda.</small>
+            </span>
+          </a>
+
+          <a href="sejarah.html#masa-kemerdekaan">
+            <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 21V4M5 4h12l-2 4 2 4H5"/></svg></span>
+            <span class="mt">
+              <strong>Masa Kemerdekaan</strong>
+              <small>Dari Self Bestuur menjadi Swapraja.</small>
+            </span>
+          </a>
+
+          <a href="sejarah.html#pembentukan">
+            <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4m8-4v4"/></svg></span>
+            <span class="mt">
+              <strong>Pembentukan Kabupaten</strong>
+              <small>Hari jadi 20 Februari 1960.</small>
+            </span>
+          </a>
+
+          <a href="sejarah.html#timeline">
+            <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            <span class="mt">
+              <strong>Timeline Sejarah</strong>
+              <small>Perjalanan Barru dari masa ke masa.</small>
+            </span>
+          </a>
+
         </div>
-    </div>
-    <div class="dropdown">
-      <button class="dropdown-toggle" data-page-link="tokoh" aria-expanded="false">Tokoh Sejarah <span class="chevron">⌄</span></button>
-      <div class="dropdown-menu mega satu ">
-        <a class="menu-feature" href="tokoh.html#raja-bangsawan" style="--img-menu-feature:var(--img-menu-tokoh)"><svg viewBox="0 0 200 130" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="130" fill="#2f6f49"/><circle cx="100" cy="150" r="90" fill="#a17c28" opacity=".35"/><circle cx="100" cy="150" r="60" fill="#a17c28" opacity=".35"/><path d="M62 92 54 50l26 20 20-30 20 30 26-20-8 42Z" fill="#f6df94" stroke="#a17c28" stroke-width="3" stroke-linejoin="round"/><rect x="62" y="96" width="76" height="9" rx="3" fill="#a17c28"/></svg><span class="feature-text"><strong>Tokoh Barru</strong><small>Raja, pahlawan, dan tokoh masyarakat.</small></span></a>
-        <div class="menu-list"><a href="tokoh.html#raja-bangsawan"><span class="mi"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18h18M4 18 3 7l5 4 4-6 4 6 5-4-1 11"/></svg></span><span class="mt"><strong>Raja dan Bangsawan</strong><small>Arung dan raja empat kerajaan</small></span></a><a href="tokoh.html#pahlawan"><span class="mi"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z"/></svg></span><span class="mt"><strong>Pahlawan</strong><small>Perlawanan dan perjuangan</small></span></a><a href="tokoh.html#tokoh-masyarakat"><span class="mi"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M16 5a3 3 0 0 1 0 6M18 14c2 .8 3 3 3 6"/></svg></span><span class="mt"><strong>Tokoh Masyarakat</strong><small>Pemimpin daerah, adat, dan pendidik</small></span></a></div>
       </div>
     </div>
+
+    <!-- TOKOH SEJARAH -->
     <div class="dropdown">
-      <button class="dropdown-toggle" data-page-link="budaya" aria-expanded="false">Budaya dan Tradisi <span class="chevron">⌄</span></button>
-      <div class="dropdown-menu mega satu ">
-        <a class="menu-feature" href="budaya.html" style="--img-menu-feature:var(--img-menu-budaya)"><svg viewBox="0 0 200 130" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="130" fill="#245c3a"/><g fill="none" stroke="#f6df94" stroke-width="3"><path d="M100 14 160 65 100 116 40 65Z"/><path d="M100 32 138 65 100 98 62 65Z"/><path d="M100 50 116 65 100 80 84 65Z" fill="#f6df94"/></g><path d="M0 65h40M160 65h40M100 0v14M100 116v14" stroke="#f6df94" stroke-width="2" opacity=".5"/></svg><span class="feature-text"><strong>Warisan Bugis</strong><small>Adat, seni, dan rasa dari tanah Barru.</small></span></a>
-        <div class="menu-list"><a href="budaya.html#adat-istiadat"><span class="mi"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="5"/><circle cx="15" cy="14" r="5"/><path d="M9 4h6l-3 4z"/></svg></span><span class="mt"><strong>Adat Istiadat</strong><small>Pernikahan adat dan lembaga adat</small></span></a><a href="budaya.html#kesenian"><span class="mi"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></span><span class="mt"><strong>Kesenian</strong><small>Tari, musik, dan sastra</small></span></a><a href="budaya.html#kuliner"><span class="mi"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11h16a8 8 0 0 1-16 0ZM8 7c0-2 2-2 2-4M13 7c0-2 2-2 2-4"/></svg></span><span class="mt"><strong>Kuliner</strong><small>Makanan khas Barru</small></span></a></div>
+
+      <button class="dropdown-toggle" data-page-link="tokoh" aria-expanded="false">
+        Tokoh Sejarah
+        <span class="chevron">⌄</span>
+      </button>
+
+      <div class="dropdown-menu mega satu">
+
+        <a class="menu-feature" href="tokoh.html#raja-bangsawan" style="--img-menu-feature:var(--img-menu-tokoh)">
+          <svg viewBox="0 0 200 130" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="130" fill="#2f6f49"/><path d="m62 92-8-42 26 20 20-30 20 30 26-20-8 42Z" fill="#f6df94" stroke="#a17c28" stroke-width="3"/><rect x="62" y="96" width="76" height="9" rx="3" fill="#a17c28"/></svg>
+          <span class="feature-text">
+            <strong>Tokoh Barru</strong>
+            <small>Raja, pahlawan, dan tokoh masyarakat.</small>
+          </span>
+        </a>
+
+        <div class="menu-list">
+
+          <a href="tokoh.html#raja-bangsawan">
+            <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 18h18M4 18 3 7l5 4 4-6 4 6 5-4-1 11"/></svg></span>
+            <span class="mt">
+              <strong>Raja dan Bangsawan</strong>
+              <small>Arung dan raja empat kerajaan.</small>
+            </span>
+          </a>
+
+          <a href="tokoh.html#pahlawan">
+            <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z"/></svg></span>
+            <span class="mt">
+              <strong>Pahlawan</strong>
+              <small>Perlawanan dan perjuangan.</small>
+            </span>
+          </a>
+
+          <a href="tokoh.html#tokoh-masyarakat">
+            <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M16 5a3 3 0 0 1 0 6M18 14c2 .8 3 3 3 6"/></svg></span>
+            <span class="mt">
+              <strong>Tokoh Masyarakat</strong>
+              <small>Pemimpin daerah, adat, dan pendidik.</small>
+            </span>
+          </a>
+
+        </div>
       </div>
     </div>
+
+    <!-- BUDAYA -->
     <div class="dropdown">
-      <button class="dropdown-toggle" data-page-link="peninggalan" aria-expanded="false">Peninggalan Sejarah <span class="chevron">⌄</span></button>
+
+      <button class="dropdown-toggle" data-page-link="budaya" aria-expanded="false">
+        Budaya dan Tradisi
+        <span class="chevron">⌄</span>
+      </button>
+
+      <div class="dropdown-menu mega satu">
+
+        <a class="menu-feature" href="budaya.html" style="--img-menu-feature:var(--img-menu-budaya)">
+          <svg viewBox="0 0 200 130" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="130" fill="#245c3a"/><path d="m100 14 60 51-60 51-60-51Z" fill="none" stroke="#f6df94" stroke-width="3"/><path d="m100 38 32 27-32 27-32-27Z" fill="none" stroke="#f6df94" stroke-width="3"/></svg>
+          <span class="feature-text">
+            <strong>Warisan Bugis</strong>
+            <small>Adat, seni, dan tradisi dari tanah Barru.</small>
+          </span>
+        </a>
+
+        <div class="menu-list">
+
+          <a href="budaya.html#adat-istiadat">
+            <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="14" r="5"/><circle cx="15" cy="14" r="5"/><path d="M9 4h6l-3 4z"/></svg></span>
+            <span class="mt">
+              <strong>Adat Istiadat</strong>
+              <small>Pernikahan adat dan lembaga adat.</small>
+            </span>
+          </a>
+
+          <a href="budaya.html#kesenian">
+            <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></span>
+            <span class="mt">
+              <strong>Kesenian</strong>
+              <small>Tari, musik, dan sastra.</small>
+            </span>
+          </a>
+
+          <a href="budaya.html#kuliner">
+            <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 11h16a8 8 0 0 1-16 0ZM8 7c0-2 2-2 2-4M13 7c0-2 2-2 2-4"/></svg></span>
+            <span class="mt">
+              <strong>Kuliner</strong>
+              <small>Makanan khas Barru.</small>
+            </span>
+          </a>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- PENINGGALAN -->
+    <div class="dropdown">
+
+      <button class="dropdown-toggle" data-page-link="peninggalan" aria-expanded="false">
+        Peninggalan Sejarah
+        <span class="chevron">⌄</span>
+      </button>
+
       <div class="dropdown-menu mega satu kanan">
-        <a class="menu-feature" href="peninggalan.html" style="--img-menu-feature:var(--img-menu-peninggalan)"><svg viewBox="0 0 200 130" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="130" fill="#a8d2d1"/><rect y="88" width="200" height="42" fill="#47794d"/><circle cx="160" cy="28" r="13" fill="#f6df94"/><path d="M52 110V58A48 48 0 0 1 148 58V110H126V60A26 26 0 0 0 74 60V110Z" fill="#e8d6a5" stroke="#6d5238" stroke-width="3"/><rect x="40" y="108" width="120" height="10" fill="#6d5238"/></svg><span class="feature-text"><strong>Jejak Masa Lalu</strong><small>Situs dan naskah yang masih bertahan.</small></span></a>
-        <div class="menu-list"><a href="peninggalan.html#situs"><span class="mi"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V9l8-5 8 5v12M9 21v-6h6v6M3 21h18"/></svg></span><span class="mt"><strong>Situs dan Bangunan</strong><small>Situs kerajaan dan bangunan kuno</small></span></a><a href="peninggalan.html#naskah"><span class="mi"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4h11v13a3 3 0 0 1-3 3H6a3 3 0 0 0 3-3V4ZM7 4a3 3 0 0 0-3 3v1h3"/><path d="M11 9h4M11 13h4"/></svg></span><span class="mt"><strong>Naskah Kuno</strong><small>Lontara dan naskah La Galigo</small></span></a></div>
+
+        <a class="menu-feature" href="peninggalan.html" style="--img-menu-feature:var(--img-menu-peninggalan)">
+          <svg viewBox="0 0 200 130" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="130" fill="#a8d2d1"/><rect y="88" width="200" height="42" fill="#47794d"/><path d="M52 110V58a48 48 0 0 1 96 0v52h-22V60a26 26 0 0 0-52 0v50Z" fill="#e8d6a5" stroke="#6d5238" stroke-width="3"/></svg>
+          <span class="feature-text">
+            <strong>Jejak Masa Lalu</strong>
+            <small>Situs dan peninggalan sejarah yang masih bertahan.</small>
+          </span>
+        </a>
+
+        <div class="menu-list">
+
+          <a href="peninggalan.html#situs">
+            <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 21V9l8-5 8 5v12M9 21v-6h6v6M3 21h18"/></svg></span>
+            <span class="mt">
+              <strong>Situs dan Bangunan</strong>
+              <small>Situs kerajaan dan bangunan bersejarah.</small>
+            </span>
+          </a>
+
+          <a href="peninggalan.html#naskah">
+            <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 4h11v13a3 3 0 0 1-3 3H6a3 3 0 0 0 3-3V4ZM7 4a3 3 0 0 0-3 3v1h3"/><path d="M11 9h4M11 13h4"/></svg></span>
+            <span class="mt">
+              <strong>Naskah Kuno</strong>
+              <small>Lontara dan naskah sejarah.</small>
+            </span>
+          </a>
+
+        </div>
       </div>
     </div>
+
+    <!-- GALERI -->
     <div class="dropdown">
-      <button class="dropdown-toggle" data-page-link="galeri" aria-expanded="false">Galeri <span class="chevron">⌄</span></button>
+
+      <button class="dropdown-toggle" data-page-link="galeri" aria-expanded="false">
+        Galeri
+        <span class="chevron">⌄</span>
+      </button>
+
       <div class="dropdown-menu mega satu kanan">
-        <a class="menu-feature" href="galeri.html" style="--img-menu-feature:var(--img-menu-galeri)"><svg viewBox="0 0 200 130" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="130" fill="#2b6b45"/><g transform="rotate(-6 73 61)"><rect x="30" y="28" width="86" height="66" rx="5" fill="#f7f4df" stroke="#a17c28" stroke-width="4"/><path d="M38 84l24-26 20 20 12-12 24 18v10H38Z" fill="#769b68"/></g><g transform="rotate(5 132 70)"><rect x="92" y="38" width="80" height="64" rx="5" fill="#f7f4df" stroke="#a17c28" stroke-width="4"/><circle cx="120" cy="58" r="8" fill="#f6df94"/><path d="M100 94l22-22 16 14 12-10 20 18v6H100Z" fill="#47794d"/></g></svg><span class="feature-text"><strong>Barru dalam Gambar</strong><small>Foto dan video dokumentasi.</small></span></a>
-        <div class="menu-list"><a href="galeri.html#foto"><span class="mi"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="m21 16-5-5-8 8"/></svg></span><span class="mt"><strong>Foto</strong><small>Arsip dan dokumentasi foto</small></span></a><a href="galeri.html#video"><span class="mi"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3"/></svg></span><span class="mt"><strong>Video</strong><small>Dokumenter dan video pendek</small></span></a></div>
+
+        <a class="menu-feature" href="galeri.html" style="--img-menu-feature:var(--img-menu-galeri)">
+          <svg viewBox="0 0 200 130" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="130" fill="#2b6b45"/><rect x="30" y="28" width="86" height="66" rx="5" fill="#f7f4df" stroke="#a17c28" stroke-width="4"/><rect x="92" y="38" width="80" height="64" rx="5" fill="#f7f4df" stroke="#a17c28" stroke-width="4"/></svg>
+          <span class="feature-text">
+            <strong>Barru dalam Gambar</strong>
+            <small>Foto dan video dokumentasi.</small>
+          </span>
+        </a>
+
+        <div class="menu-list">
+
+          <a href="galeri.html#foto">
+            <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="m21 16-5-5-8 8"/></svg></span>
+            <span class="mt">
+              <strong>Foto</strong>
+              <small>Arsip dan dokumentasi foto.</small>
+            </span>
+          </a>
+
+          <a href="galeri.html#video">
+            <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3"/></svg></span>
+            <span class="mt">
+              <strong>Video</strong>
+              <small>Dokumenter dan video pendek.</small>
+            </span>
+          </a>
+
+        </div>
       </div>
     </div>
+
+    <!-- TENTANG KAMI -->
     <div class="dropdown">
-      <button class="dropdown-toggle" data-page-link="tentang" aria-expanded="false">Tentang Kami <span class="chevron">⌄</span></button>
+
+      <button class="dropdown-toggle" data-page-link="tentang" aria-expanded="false">
+        Tentang Kami
+        <span class="chevron">⌄</span>
+      </button>
+
       <div class="dropdown-menu mega satu kanan">
-        <a class="menu-feature" href="tentang.html" style="--img-menu-feature:var(--img-menu-tentang)"><svg viewBox="0 0 200 130" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="130" fill="#245c3a"/><circle cx="160" cy="26" r="10" fill="#f6df94"/><path d="M100 40C80 28 56 28 36 36v62c20-8 44-8 64 4Z" fill="#f7f4df" stroke="#a17c28" stroke-width="3"/><path d="M100 40c20-12 44-12 64-4v62c-20-8-44-8-64 4Z" fill="#efe6bb" stroke="#a17c28" stroke-width="3"/><path d="M50 52c14-4 32-4 40 0M50 64c14-4 32-4 40 0M50 76c14-4 32-4 40 0M110 52c8-4 26-4 40 0M110 64c8-4 26-4 40 0" stroke="#a17c28" stroke-width="2.5" fill="none"/></svg><span class="feature-text"><strong>Di Balik Situs</strong><small>Tujuan dan tim penyusun.</small></span></a>
-        <div class="menu-list"><a href="tentang.html#profil"><span class="mi"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg></span><span class="mt"><strong>Profil Situs</strong><small>Tujuan dan sumber rujukan</small></span></a><a href="tentang.html#tim"><span class="mi"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M16 5a3 3 0 0 1 0 6M18 14c2 .8 3 3 3 6"/></svg></span><span class="mt"><strong>Tim Penyusun</strong><small>Orang di balik situs ini</small></span></a></div>
+
+        <a class="menu-feature" href="tentang.html" style="--img-menu-feature:var(--img-menu-tentang)">
+          <svg viewBox="0 0 200 130" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="130" fill="#245c3a"/><path d="M100 40C80 28 56 28 36 36v62c20-8 44-8 64 4ZM100 40c20-12 44-12 64-4v62c-20-8-44-8-64 4Z" fill="#f7f4df" stroke="#a17c28" stroke-width="3"/><path d="M50 52h40M50 64h40M110 52h40M110 64h40" stroke="#a17c28" stroke-width="2.5"/></svg>
+          <span class="feature-text">
+            <strong>Di Balik Situs</strong>
+            <small>Tujuan dan tim penyusun website.</small>
+          </span>
+        </a>
+
+        <div class="menu-list">
+
+          <a href="tentang.html#profil">
+            <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg></span>
+            <span class="mt">
+              <strong>Profil Situs</strong>
+              <small>Tujuan dan sumber rujukan.</small>
+            </span>
+          </a>
+
+          <a href="tentang.html#tim">
+            <span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M16 5a3 3 0 0 1 0 6M18 14c2 .8 3 3 3 6"/></svg></span>
+            <span class="mt">
+              <strong>Tim Penyusun</strong>
+              <small>Orang di balik situs ini.</small>
+            </span>
+          </a>
+
+        </div>
       </div>
     </div>
-    <a href="index.html#kontak" class="nav-link">Kontak</a>
+
+    <a href="kontak/index.php" class="nav-link">
+      Kontak
+    </a>
+
   </nav>
 
+  <!-- TOMBOL NAVIGASI -->
   <div class="nav-actions">
+
     <button class="search-btn" id="searchOpen" aria-label="Cari di situs ini">
-      <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="9" r="6"/><path d="m14 14 4 4"/></svg>
-      <span>Cari...</span><kbd>Ctrl K</kbd>
+
+      <svg viewBox="0 0 20 20" width="16" height="16"
+        fill="none" stroke="currentColor" stroke-width="2"
+        aria-hidden="true">
+        <circle cx="9" cy="9" r="6"/>
+        <path d="m14 14 4 4"/>
+      </svg>
+
+      <span>Cari...</span>
+      <kbd>Ctrl K</kbd>
+
     </button>
-    <a class="nav-cta" href="sejarah.html#asal-usul">Mulai Baca</a>
-    <button class="menu-toggle" id="menuToggle" aria-label="Buka navigasi" aria-expanded="false">☰</button>
+
+    <a class="nav-cta" href="sejarah.html#asal-usul">
+      Mulai Baca
+    </a>
+
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+      aria-label="Buka navigasi"
+      aria-expanded="false"
+    >
+      ☰
+    </button>
+
   </div>
+
 </header>
 
+
+<!-- =====================================================
+     SEARCH OVERLAY
+===================================================== -->
+
 <div class="search-overlay" id="searchOverlay">
+
   <div class="search-modal" role="dialog" aria-modal="true" aria-label="Pencarian">
-    <input id="searchInput" type="search" placeholder="Cari halaman atau bagian sejarah..." autocomplete="off">
+
+    <input
+      id="searchInput"
+      type="search"
+      placeholder="Cari halaman atau bagian sejarah..."
+      autocomplete="off"
+    >
+
     <ul class="search-results" id="searchResults"></ul>
+
   </div>
 </div>
+
+
+<!-- =====================================================
+     KONTEN UTAMA
+===================================================== -->
+
 <main>
-  <section class="p-hero" id="awal"><div class="p-pola"></div><span class="p-dia d1"></span><span class="p-dia d2"></span><span class="p-dia d3"></span>
+
+  <!-- HERO -->
+  <section class="p-hero" id="awal">
+
+    <div class="p-pola"></div>
+
+    <span class="p-dia d1"></span>
+    <span class="p-dia d2"></span>
+    <span class="p-dia d3"></span>
+
     <div class="p-wrap p-hero-in">
-      <nav class="p-crumb" aria-label="Jejak halaman"><a href="index.html">Home</a><span>›</span>Tentang Kami</nav>
-      <p class="p-kicker">Mengenal Situs Ini</p><h1>Tentang <em>Kami</em></h1><p class="p-lead">Situs ini dibuat untuk mendokumentasikan dan memperkenalkan sejarah Kabupaten Barru kepada masyarakat luas.</p>
-      <div class="p-chips"><a href="#profil">Profil Situs</a><a href="#tim">Tim Penyusun</a></div>
+
+      <nav class="p-crumb" aria-label="Jejak halaman">
+        <a href="index.html">Home</a>
+        <span>›</span>
+        Tentang Kami
+      </nav>
+
+      <p class="p-kicker">MENGENAL SITUS INI</p>
+
+      <h1>
+        Tentang <em>Kami</em>
+      </h1>
+
+      <p class="p-lead">
+        Situs ini dibuat untuk mendokumentasikan dan memperkenalkan
+        sejarah Kabupaten Barru kepada masyarakat luas.
+      </p>
+
+      <div class="p-chips">
+        <a href="#profil">Profil Situs</a>
+        <a href="#tim">Tim Penyusun</a>
+      </div>
+
     </div>
-    <svg class="p-wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30C240 70 480 0 720 30s480 40 720 0V60H0Z"/></svg>
+
+    <svg class="p-wave" viewBox="0 0 1440 60"
+      preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 30C240 70 480 0 720 30s480 40 720 0V60H0Z"/>
+    </svg>
+
   </section>
-<section class="p-sec" id="profil"><div class="p-wrap"><div class="p-head reveal"><span class="p-eyebrow">01</span><h2>Profil Situs</h2><div class="p-garis"></div><p class="p-intro">Menyajikan sejarah, tokoh, budaya, dan peninggalan Barru dalam satu tempat, dengan rujukan yang bisa ditelusuri.</p></div><div class="p-stats reveal"><div><b data-count="4">0</b><span>Kerajaan pembentuk</span></div><div><b data-count="1960">0</b><span>Tahun terbentuk</span></div><div><b data-count="3">0</b><span>Kategori tokoh</span></div></div><div class="p-grid "><article class="p-card reveal"><div class="p-body"><span class="p-ico"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg></span><h3>Tujuan</h3><p>Pelestarian dan edukasi sejarah daerah.</p></div></article><article class="p-card reveal"><div class="p-body"><span class="p-ico"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></span><h3>Sumber</h3><p>Rujukan berasal dari jurnal, kajian cagar budaya, dan media. Tautannya ada di tiap halaman.</p></div></article><article class="p-card kosong reveal"><div class="p-body"><span class="p-ico"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span><h3>Latar belakang</h3><p>Ceritakan alasan dan awal pembuatan situs ini.</p></div></article></div></div></section><section class="p-sec alt" id="tim"><div class="p-wrap"><div class="p-head reveal"><span class="p-eyebrow">02</span><h2>Tim Penyusun</h2><div class="p-garis"></div><p class="p-intro">Cantumkan nama dan peran tiap anggota.</p></div><div class="p-grid"><article class="p-card team reveal"><div class="p-body"><span class="av"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></span><h3>Nama Penyusun 1</h3><p>Peran / institusi</p></div></article><article class="p-card team reveal"><div class="p-body"><span class="av"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></span><h3>Nama Penyusun 2</h3><p>Peran / institusi</p></div></article><article class="p-card team reveal"><div class="p-body"><span class="av"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></span><h3>Pembimbing</h3><p>Nama dan jabatan</p></div></article></div></div></section>
-<section class="p-quote"><div class="p-wrap reveal"><span class="qm">“</span><blockquote>Mengenal masa lalu, memahami jati diri, untuk masa depan yang lebih baik.</blockquote></div></section>
-<section class="p-sec"><div class="p-wrap"><div class="p-head reveal"><span class="p-eyebrow">Lanjutkan</span><h2>Jelajahi Juga</h2><div class="p-garis"></div></div><div class="p-grid"><a class="p-more reveal" href="sejarah.html"><span class="p-ico"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4h11v13a3 3 0 0 1-3 3H6a3 3 0 0 0 3-3V4ZM7 4a3 3 0 0 0-3 3v1h3"/><path d="M11 9h4M11 13h4"/></svg></span><strong>Sejarah Barru</strong><small>Perjalanan dari masa ke masa.</small><em>Buka →</em></a><a class="p-more reveal" href="tokoh.html"><span class="p-ico"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></span><strong>Tokoh Sejarah</strong><small>Raja, pahlawan, dan tokoh.</small><em>Buka →</em></a><a class="p-more reveal" href="budaya.html"><span class="p-ico"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="14" r="5"/><circle cx="15" cy="14" r="5"/><path d="M9 4h6l-3 4z"/></svg></span><strong>Budaya dan Tradisi</strong><small>Adat, seni, dan rasa dari Barru.</small><em>Buka →</em></a></div></div></section>
-  <section class="p-sec alt"><div class="p-wrap"><div class="p-head reveal"><span class="p-eyebrow">Rujukan</span><h2>Sumber Rujukan</h2><div class="p-garis"></div></div><ul class="p-src"><li><a href="sejarah.html#sumber" target="_blank" rel="noopener">Lihat halaman Sejarah dan Tokoh untuk daftar rujukan lengkap</a></li></ul></div></section>
+
+
+  <!-- =================================================
+       PROFIL SITUS
+  ================================================== -->
+
+  <section class="p-sec" id="profil">
+
+    <div class="p-wrap">
+
+      <div class="p-head reveal">
+
+        <span class="p-eyebrow">01</span>
+
+        <h2>Profil Situs</h2>
+
+        <div class="p-garis"></div>
+
+        <p class="p-intro">
+          Menyajikan sejarah, tokoh, budaya, dan peninggalan
+          Kabupaten Barru dalam satu tempat, dengan sumber
+          informasi yang dapat ditelusuri.
+        </p>
+
+      </div>
+
+
+      <!-- STATISTIK -->
+      <div class="p-stats reveal">
+
+        <div>
+          <b data-count="9">10</b>
+          <span>tanggal pembentuk</span>
+        </div>
+
+        <div>
+          <b data-count="2026">0</b>
+          <span>Tahun terbentuk</span>
+        </div>
+
+        <div>
+          <b data-count="7">0</b>
+          <span>pembentuk web</span>
+        </div>
+
+      </div>
+
+
+      <!-- INFORMASI PROFIL -->
+      <div class="p-grid">
+
+        <article class="p-card reveal">
+
+          <div class="p-body">
+
+            <span class="p-ico">
+              <svg viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.7"
+                stroke-linecap="round" stroke-linejoin="round"
+                aria-hidden="true">
+                <circle cx="12" cy="12" r="9"/>
+                <circle cx="12" cy="12" r="4"/>
+              </svg>
+            </span>
+
+            <h3>Tujuan</h3>
+
+            <p>
+              Menjadi media informasi dan edukasi untuk
+              mengenalkan serta melestarikan sejarah
+              Kabupaten Barru.
+            </p>
+
+          </div>
+        </article>
+
+
+        <article class="p-card reveal">
+
+          <div class="p-body">
+
+            <span class="p-ico">
+              <svg viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.7"
+                stroke-linecap="round" stroke-linejoin="round"
+                aria-hidden="true">
+                <path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/>
+                <path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>
+              </svg>
+            </span>
+
+            <h3>Sumber Informasi</h3>
+
+            <p>
+              Informasi disusun dengan mengacu pada jurnal,
+              kajian sejarah, sumber pemerintah, dan
+              referensi terkait Kabupaten Barru.
+            </p>
+
+          </div>
+        </article>
+
+
+        <article class="p-card reveal">
+
+          <div class="p-body">
+
+            <span class="p-ico">
+              <svg viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.7"
+                stroke-linecap="round" stroke-linejoin="round"
+                aria-hidden="true">
+                <path d="M12 5v14M5 12h14"/>
+              </svg>
+            </span>
+
+            <h3>Latar Belakang</h3>
+
+            <p>
+              Website ini dikembangkan sebagai sarana
+              digital untuk memperkenalkan kekayaan sejarah,
+              budaya, dan identitas Kabupaten Barru.
+            </p>
+
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =================================================
+       TIM PENYUSUN
+  ================================================== -->
+
+  <section class="p-sec alt" id="tim">
+
+    <div class="p-wrap">
+
+      <div class="p-head reveal">
+
+        <span class="p-eyebrow">02</span>
+
+        <h2>Tim Penyusun</h2>
+
+        <div class="p-garis"></div>
+
+        <p class="p-intro">
+          Tim yang berperan dalam perencanaan, pengembangan,
+          pengumpulan informasi, dan penyusunan website
+          Sejarah Kabupaten Barru.
+        </p>
+
+      </div>
+
+
+      <!-- DAFTAR TUJUH ANGGOTA -->
+      <div class="p-grid">
+
+        <article class="p-card team reveal">
+          <div class="team-foto foto-anggota-1" role="img" aria-label="Foto Nama Anggota 1"><span></span></div>
+          <div class="p-body">
+            <h3>M.AKBAR MUBARAK</h3>
+            <p>Ketua Tim / DEBUGING</p>
+          </div>
+        </article>
+
+        <article class="p-card team reveal">
+          <div class="team-foto foto-anggota-2" role="img" aria-label="Foto Nama Anggota 2"><span></span></div>
+          <div class="p-body">
+            <h3>FERYL RAHMAT RAMDAN</h3>
+            <p>DESIGN</p>
+          </div>
+        </article>
+
+        <article class="p-card team reveal">
+          <div class="team-foto foto-anggota-3" role="img" aria-label="Foto Nama Anggota 3"><span></span></div>
+          <div class="p-body">
+            <h3>NURUL SAKINAH</h3>
+            <p>DEBUGGING</p>
+          </div>
+        </article>
+
+        <article class="p-card team reveal">
+          <div class="team-foto foto-anggota-4" role="img" aria-label="Foto Nama Anggota 4"><span></span></div>
+          <div class="p-body">
+            <h3>SUCI RAMADANI</h3>
+            <p>NOTULEN</p>
+          </div>
+        </article>
+
+        <article class="p-card team reveal">
+          <div class="team-foto foto-anggota-5" role="img" aria-label="Foto Nama Anggota 5"><span></span></div>
+          <div class="p-body">
+            <h3>NURUL HIKMAH</h3>
+            <p>NOTULEN</p>
+          </div>
+        </article>
+
+        <article class="p-card team reveal">
+          <div class="team-foto foto-anggota-6" role="img" aria-label="Foto Nama Anggota 6"><span></span></div>
+          <div class="p-body">
+            <h3>AZKYA AMILDA</h3>
+            <p>DESIGN</p>
+          </div>
+        </article>
+
+        <article class="p-card team reveal">
+          <div class="team-foto foto-anggota-7" role="img" aria-label="Foto Nama Anggota 7"><span></span></div>
+          <div class="p-body">
+            <h3>WILDA MUFIDA</h3>
+            <p>DOKUMENTATOR</p>
+          </div>
+        </article>
+
+      </div>
+
+      <figure class="team-group reveal">
+        <div class="team-group-foto foto-tim-group"
+          role="img"
+          aria-label="Foto bersama seluruh tim penyusun">
+          <span></span>
+        </div>
+        <figcaption>FOTO TIM KELOMPOK 2 </figcaption>
+      </figure>
+    </div>
+  </section>
+
+
+  <!-- =================================================
+       KUTIPAN
+  ================================================== -->
+
+  <section class="p-quote">
+
+    <div class="p-wrap reveal">
+
+      <span class="qm">“</span>
+
+      <blockquote>
+        Mengenal masa lalu, memahami jati diri,
+        untuk masa depan yang lebih baik.
+      </blockquote>
+
+    </div>
+  </section>
+
+
+  <!-- =================================================
+       JELAJAHI HALAMAN LAIN
+  ================================================== -->
+
+  <section class="p-sec">
+
+    <div class="p-wrap">
+
+      <div class="p-head reveal">
+
+        <span class="p-eyebrow">LANJUTKAN</span>
+
+        <h2>Jelajahi Juga</h2>
+
+        <div class="p-garis"></div>
+
+      </div>
+
+
+      <div class="p-grid">
+
+        <a class="p-more reveal" href="sejarah.html">
+
+          <span class="p-ico">
+            <svg viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.7"
+              stroke-linecap="round" stroke-linejoin="round"
+              aria-hidden="true">
+              <path d="M7 4h11v13a3 3 0 0 1-3 3H6a3 3 0 0 0 3-3V4Z"/>
+              <path d="M11 9h4M11 13h4"/>
+            </svg>
+          </span>
+
+          <strong>Sejarah Barru</strong>
+
+          <small>Perjalanan Kabupaten Barru dari masa ke masa.</small>
+
+          <em>Buka →</em>
+
+        </a>
+
+
+        <a class="p-more reveal" href="tokoh.html">
+
+          <span class="p-ico">
+            <svg viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.7"
+              stroke-linecap="round" stroke-linejoin="round"
+              aria-hidden="true">
+              <circle cx="12" cy="8" r="4"/>
+              <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/>
+            </svg>
+          </span>
+
+          <strong>Tokoh Sejarah</strong>
+
+          <small>Raja, pahlawan, dan tokoh masyarakat Barru.</small>
+
+          <em>Buka →</em>
+
+        </a>
+
+
+        <a class="p-more reveal" href="budaya.html">
+
+          <span class="p-ico">
+            <svg viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.7"
+              stroke-linecap="round" stroke-linejoin="round"
+              aria-hidden="true">
+              <circle cx="9" cy="14" r="5"/>
+              <circle cx="15" cy="14" r="5"/>
+              <path d="M9 4h6l-3 4Z"/>
+            </svg>
+          </span>
+
+          <strong>Budaya dan Tradisi</strong>
+
+          <small>Adat, kesenian, dan tradisi masyarakat Barru.</small>
+
+          <em>Buka →</em>
+
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =================================================
+       SUMBER RUJUKAN
+  ================================================== -->
+
+  <section class="p-sec alt">
+
+    <div class="p-wrap">
+
+      <div class="p-head reveal">
+
+        <span class="p-eyebrow">RUJUKAN</span>
+
+        <h2>Sumber Rujukan</h2>
+
+        <div class="p-garis"></div>
+
+        <p class="p-intro">
+          Sumber dan referensi yang digunakan dalam
+          penyusunan informasi sejarah Kabupaten Barru.
+        </p>
+
+      </div>
+
+      <ul class="p-src">
+
+        <li>
+          <a href="sejarah.html#sumber">
+            Lihat halaman Sejarah untuk daftar sumber rujukan.
+          </a>
+        </li>
+
+      </ul>
+
+    </div>
+  </section>
+
 </main>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
 <footer class="footer" id="kontak">
-  <a href="#top">↑ Kembali ke atas</a>
-  <p>© <span id="tahun"></span> Sejarah Kabupaten Barru · Email: info@contoh.com · Telp: 0000-0000-0000</p>
+
+  <a href="#top">
+    ↑ Kembali ke atas
+  </a>
+
+  <p>SEJARAH BARRU | 07</p>
+
 </footer>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
 <script src="assets/js/main.js"></script>
 <script src="assets/js/halaman.js"></script>
+<script src="assets/js/animasi.js"></script>
+
 </body>
 </html>

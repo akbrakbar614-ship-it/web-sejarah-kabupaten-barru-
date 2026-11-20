@@ -33,13 +33,14 @@ body{background:var(--krem)}
 .p-card{position:relative;background:var(--kertas);border:1px solid var(--garis);border-radius:16px;overflow:hidden;box-shadow:0 10px 24px #243c2812;transition:transform .25s,box-shadow .25s}
 .p-card::after{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,var(--emas),#f6df94);transform:scaleX(0);transform-origin:left;transition:transform .3s}
 .p-card:hover{transform:translateY(-6px);box-shadow:0 18px 34px #243c2822}.p-card:hover::after{transform:none}
-.p-img{height:170px;background:linear-gradient(135deg,#cfd9b4,#a9bd8a) center/cover no-repeat}
+.p-img{height:170px;background:var(--foto,none) center/cover no-repeat,linear-gradient(135deg,#cfd9b4,#a9bd8a)}
 .p-body{padding:22px}
 .p-ico{display:grid;place-items:center;width:46px;height:46px;margin-bottom:12px;border-radius:12px;background:var(--hover);color:var(--hijau);transition:.25s}
 .p-ico svg{width:24px;height:24px}.p-card:hover .p-ico{background:var(--hijau);color:#f8eebd}
 .p-body h3{margin:0 0 6px;font:700 19px "Playfair Display",serif;color:var(--hijau-tua)}
 .p-body p{margin:0;font-size:14px;line-height:1.7;color:#4d5a46}
-.p-card.kosong{background:transparent;border:2px dashed #cdbf86;box-shadow:none}
+/* Kartu kosong: border dan latar sama dengan kartu lain */
+.p-card.kosong{box-shadow:0 10px 24px #243c2812}
 .p-card.kosong .p-ico{background:transparent;border:1.5px dashed var(--emas);color:var(--emas)}.p-card.kosong h3{color:#8a7a3a}
 .p-card.kosong::after{display:none}.p-card.kosong:hover{transform:none;box-shadow:none}
 
@@ -90,3 +91,93 @@ body{background:var(--krem)}
 .js .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}.js .reveal.in{opacity:1;transform:none}
 @media(max-width:650px){.p-hero{padding:52px 0 90px}.p-sec{padding:52px 0}.g-tile.w{grid-column:span 1}.p-dia{display:none}}
 @media(prefers-reduced-motion:reduce){.p-dia{animation:none}.js .reveal{opacity:1;transform:none;transition:none}.p-card,.g-img{transition:none}}
+
+/* Label dan catatan sumber */
+.p-tags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0}
+.tag{padding:3px 10px;border-radius:999px;background:var(--hover);color:var(--hijau);font-size:11px;font-weight:700}
+.tag.src{background:transparent;border:1px solid var(--garis);color:#6c705a;font-weight:500}
+.p-note{margin-top:28px;padding:18px 20px;border-left:4px solid var(--emas);border-radius:0 12px 12px 0;background:var(--kertas);font-size:14px;line-height:1.7;color:#4d5a46}
+
+/* ===== Komponen berbasis teks (fakta, akordeon, daftar) ===== */
+.p-sub{margin:34px 0 4px;font:700 22px "Playfair Display",serif;color:var(--hijau-tua)}
+.p-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:24px 0 0}
+.p-facts div{padding:14px 16px;background:var(--kertas);border:1px solid var(--garis);border-left:4px solid var(--emas);border-radius:10px}
+.p-facts dt{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--emas)}
+.p-facts dd{margin:3px 0 0;font-size:14px;font-weight:600;line-height:1.5;color:var(--hijau-tua)}
+.p-facts.mini{grid-template-columns:1fr;gap:8px;margin-top:16px}.p-facts.mini div{padding:10px 12px;background:transparent}
+.p-acc{margin-top:12px;border:1px solid var(--garis);border-radius:12px;background:var(--kertas);overflow:hidden}
+.p-acc summary{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 18px;cursor:pointer;list-style:none;font:700 17px "Playfair Display",serif;color:var(--hijau-tua)}
+.p-acc summary::-webkit-details-marker{display:none}
+.p-acc summary::after{content:"+";font:400 24px/1 "DM Sans",sans-serif;color:var(--emas)}
+.p-acc[open] summary::after{content:"−"}.p-acc summary:hover{background:var(--hover)}
+.p-acc div{padding:0 18px 18px;font-size:14px;line-height:1.8;color:#4d5a46}
+.p-note{margin:22px 0 0;padding:14px 18px;border-left:4px solid var(--emas);border-radius:8px;background:var(--hover);font-size:13px;line-height:1.7;color:var(--teks)}
+.p-list{columns:2 280px;column-gap:32px;margin:22px 0 0;padding-left:20px;line-height:1.95;font-size:14px}
+.p-list li::marker{color:var(--emas)}
+
+/* ===== Foto pendukung (kecil, tidak dominan) ===== */
+.p-foto{position:relative;margin:0 0 16px;border-radius:10px;overflow:hidden;border:1px solid var(--garis);background:linear-gradient(135deg,#cfd9b4,#a9bd8a)}
+.p-foto img{display:block;width:100%;height:150px;object-fit:cover}
+.p-foto figcaption{padding:8px 12px;font-size:11px;line-height:1.5;color:#4d5a46;background:var(--kertas)}
+.p-foto.lebar{max-width:620px;margin:24px 0 0}.p-foto.lebar img{height:220px}
+.p-foto.kosong img{display:none}
+.p-foto.kosong::before{content:"Foto belum ditambahkan";display:grid;place-items:center;height:110px;font-size:12px;font-weight:600;color:#6c705a}
+@media(max-width:650px){.p-foto.lebar img{height:170px}}
+
+/* ===== Foto dikendalikan dari images.css (variabel --foto) ===== */
+.p-foto-img{height:150px;background:var(--foto,none) center/cover no-repeat,linear-gradient(135deg,#cfd9b4,#a9bd8a)}
+.p-foto.lebar .p-foto-img{height:220px}
+.g-img{background:var(--foto,none) center/cover no-repeat,linear-gradient(135deg,#cfd9b4,#a9bd8a)}
+.lb div{background:var(--foto,none) center/cover no-repeat,linear-gradient(135deg,#cfd9b4,#a9bd8a)}
+@media(max-width:650px){.p-foto.lebar .p-foto-img{height:170px}}
+
+
+/* ===== TIM PENYUSUN: 6 ORANG ===== */
+
+#tim .p-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+#tim .team {
+    text-align: center;
+    transition: .3s ease;
+}
+
+#tim .team:hover {
+    transform: translateY(-7px);
+}
+
+#tim .av {
+    display: grid;
+    place-items: center;
+    width: 84px;
+    height: 84px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    background: var(--hijau-tua);
+    border: 3px solid var(--emas);
+    color: var(--krem);
+    font: 700 25px "Playfair Display", serif;
+}
+
+#tim .team h3 {
+    margin-bottom: 6px;
+}
+
+#tim .team p {
+    font-size: 13px;
+}
+
+/* Tampilan tablet dan HP */
+@media (max-width: 750px) {
+    #tim .p-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    #tim .p-grid {
+        grid-template-columns: 1fr;
+    }
+}

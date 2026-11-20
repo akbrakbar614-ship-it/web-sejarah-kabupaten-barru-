@@ -1,5 +1,0 @@
-/* Mega menu bergambar untuk semua dropdown (gaya Laravel). Warna mengikuti tema. */
-@media (min-width:1181px){
-  .dropdown-menu.mega.satu{width:560px;max-width:calc(100vw - 32px);grid-template-columns:210px 1fr}
-  .dropdown-menu.mega.satu .menu-list{grid-template-columns:1fr;height:auto;align-content:start}
-}

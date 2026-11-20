@@ -1,0 +1,274 @@
+<?php
+declare(strict_types=1);
+
+session_start();
+
+$requestMethod = $_SERVER['REQUEST_METHOD'] ?? 'GET';
+$errors = [];
+$values = ['nama' => '', 'email' => '', 'subjek' => '', 'pesan' => ''];
+$terkirim = isset($_GET['terkirim']) && $_GET['terkirim'] === '1';
+
+function jumlahKarakter(string $value): int
+{
+    if (function_exists('mb_strlen')) {
+        return mb_strlen($value, 'UTF-8');
+    }
+
+    $count = preg_match_all('/./us', $value);
+    return $count === false ? PHP_INT_MAX : $count;
+}
+
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
+require_once dirname(__DIR__) . '/config/pdo.php';
+
+if ($requestMethod === 'POST') {
+    foreach ($values as $key => $default) {
+        $values[$key] = isset($_POST[$key]) && is_string($_POST[$key])
+            ? trim($_POST[$key])
+            : $default;
+    }
+
+    $token = isset($_POST['csrf_token']) && is_string($_POST['csrf_token'])
+        ? $_POST['csrf_token']
+        : '';
+    if (!hash_equals($_SESSION['csrf_token'], $token)) {
+        $errors[] = 'Sesi formulir tidak valid. Muat ulang halaman, lalu coba lagi.';
+    }
+
+    if (!empty($_POST['company_website'])) {
+        $errors[] = 'Formulir tidak dapat dikirim. Silakan muat ulang halaman.';
+    }
+    if ($values['nama'] === '' || jumlahKarakter($values['nama']) > 100) {
+        $errors[] = 'Nama wajib diisi dan maksimal 100 karakter.';
+    }
+    if (!filter_var($values['email'], FILTER_VALIDATE_EMAIL) || strlen($values['email']) > 254) {
+        $errors[] = 'Masukkan alamat email yang valid.';
+    }
+    if ($values['subjek'] === '' || jumlahKarakter($values['subjek']) > 150) {
+        $errors[] = 'Topik wajib diisi dan maksimal 150 karakter.';
+    }
+    if ($values['pesan'] === '' || jumlahKarakter($values['pesan']) > 10000) {
+        $errors[] = 'Pesan wajib diisi dan maksimal 10.000 karakter.';
+    }
+
+    if (!$errors) {
+        try {
+            $pdo = database_connection();
+            $statement = $pdo->prepare(
+                'INSERT INTO pesan_kontak (nama, email, subjek, pesan) VALUES (:nama, :email, :subjek, :pesan)'
+            );
+            $statement->execute($values);
+
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+            header('Location: index.php?terkirim=1', true, 303);
+            exit;
+        } catch (PDOException $exception) {
+            error_log('Gagal menyimpan formulir kontak: ' . $exception->getMessage());
+            $errors[] = 'Pesan belum dapat disimpan. Silakan coba beberapa saat lagi.';
+        }
+    }
+}
+
+function e(string $value): string
+{
+    return htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+}
+?>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hubungi tim penyusun situs Sejarah Kabupaten Barru.">
+  <title>Kontak · Kabupaten Barru</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/images.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/menu.css">
+  <link rel="stylesheet" href="../assets/css/kontak.css">
+  <link rel="stylesheet" href="../assets/css/animasi.css">
+</head>
+<body data-page="kontak" data-root-prefix="../">
+  <header class="site-header" id="top">
+    <a class="brand" href="../index.html" aria-label="Sejarah Kabupaten Barru, beranda">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span><strong>Sejarah Kabupaten</strong><small>BARRU · SULAWESI SELATAN</small></span>
+    </a>
+
+    <nav class="main-nav" id="mainNav" aria-label="Navigasi utama">
+      <a href="../index.html" class="nav-link" data-page-link="home">Home</a>
+      <div class="dropdown">
+        <button class="dropdown-toggle" data-page-link="sejarah" id="historyToggle" aria-expanded="false" aria-controls="historyMenu">
+          Sejarah Kabupaten Barru <span class="chevron">⌄</span>
+        </button>
+        <div class="dropdown-menu mega" id="historyMenu">
+          <a class="menu-feature" href="../sejarah.html#pembentukan">
+            <svg viewBox="0 0 200 130" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="130" fill="#a8d2d1"/><rect y="62" width="200" height="68" fill="#d7d99b"/><circle cx="152" cy="30" r="15" fill="#f6df94"/><path d="M-20 105Q40 50 110 90T220 85V130H-20Z" fill="#769b68"/><path d="M40 130Q120 70 220 112V130Z" fill="#47794d"/><path d="M62 62 100 30l38 32-5 6-33-25-33 25Z" fill="#714c35"/><rect x="70" y="64" width="60" height="30" fill="#e8d6a5" stroke="#6d5238" stroke-width="3"/><path d="M76 94v14M124 94v14" stroke="#6b4b35" stroke-width="3"/></svg>
+            <span class="feature-text"><strong>Hari Jadi Barru</strong><small>20 Februari 1960, lahirnya Kabupaten Barru.</small></span>
+          </a>
+          <div class="menu-list">
+            <a href="../sejarah.html#asal-usul"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span class="mt"><strong>Asal Usul Barru</strong><small>Pengantar dan empat wilayah kerajaan</small></span></a>
+            <a href="../sejarah.html#masa-kerajaan"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 18h18M4 18 3 7l5 4 4-6 4 6 5-4-1 11"/></svg></span><span class="mt"><strong>Masa Kerajaan</strong><small>Berru, Tanete, Soppeng Riaja, Mallusetasi</small></span></a>
+            <a href="../sejarah.html#masa-penjajahan"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 21V9l8-5 8 5v12M9 21v-6h6v6M3 21h18"/></svg></span><span class="mt"><strong>Masa Penjajahan</strong><small>Onder Afdeling Barru di era Belanda</small></span></a>
+            <a href="../sejarah.html#masa-kemerdekaan"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 21V4M5 4h12l-2 4 2 4H5"/></svg></span><span class="mt"><strong>Masa Kemerdekaan</strong><small>Dari Self Bestuur menjadi Swapraja</small></span></a>
+            <a href="../sejarah.html#pembentukan"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4m8-4v4"/></svg></span><span class="mt"><strong>Pembentukan Kabupaten</strong><small>Hari jadi 20 Februari 1960</small></span></a>
+            <a href="../sejarah.html#timeline"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span class="mt"><strong>Timeline Sejarah</strong><small>Ringkasan perjalanan Barru</small></span></a>
+          </div>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropdown-toggle" data-page-link="tokoh" aria-expanded="false" aria-controls="tokohMenu">
+          Tokoh Sejarah <span class="chevron">⌄</span>
+        </button>
+        <div class="dropdown-menu mega satu" id="tokohMenu">
+          <a class="menu-feature" href="../tokoh.html#raja-bangsawan" style="--img-menu-feature:var(--img-menu-tokoh)">
+            <svg viewBox="0 0 200 130" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="130" fill="#2f6f49"/><circle cx="100" cy="150" r="90" fill="#a17c28" opacity=".35"/><path d="m62 92-8-42 26 20 20-30 20 30 26-20-8 42Z" fill="#f6df94" stroke="#a17c28" stroke-width="3"/><rect x="62" y="96" width="76" height="9" rx="3" fill="#a17c28"/></svg>
+            <span class="feature-text"><strong>Tokoh Barru</strong><small>Raja, pahlawan, dan tokoh masyarakat.</small></span>
+          </a>
+          <div class="menu-list">
+            <a href="../tokoh.html#raja-bangsawan"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 18h18M4 18 3 7l5 4 4-6 4 6 5-4-1 11"/></svg></span><span class="mt"><strong>Raja dan Bangsawan</strong><small>Arung dan raja empat kerajaan</small></span></a>
+            <a href="../tokoh.html#pahlawan"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m12 3 7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z"/></svg></span><span class="mt"><strong>Pahlawan</strong><small>Perlawanan dan perjuangan</small></span></a>
+            <a href="../tokoh.html#tokoh-masyarakat"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M16 5a3 3 0 0 1 0 6M18 14c2 .8 3 3 3 6"/></svg></span><span class="mt"><strong>Tokoh Masyarakat</strong><small>Pemimpin daerah, adat, dan pendidik</small></span></a>
+          </div>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropdown-toggle" data-page-link="budaya" aria-expanded="false" aria-controls="budayaMenu">
+          Budaya dan Tradisi <span class="chevron">⌄</span>
+        </button>
+        <div class="dropdown-menu mega satu" id="budayaMenu">
+          <a class="menu-feature" href="../budaya.html" style="--img-menu-feature:var(--img-menu-budaya)">
+            <svg viewBox="0 0 200 130" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="130" fill="#245c3a"/><g fill="none" stroke="#f6df94" stroke-width="3"><path d="m100 14 60 51-60 51-60-51Z"/><path d="m100 32 38 33-38 33-38-33Z"/><path d="m100 50 16 15-16 15-16-15Z" fill="#f6df94"/></g></svg>
+            <span class="feature-text"><strong>Warisan Bugis</strong><small>Adat, seni, dan rasa dari tanah Barru.</small></span>
+          </a>
+          <div class="menu-list">
+            <a href="../budaya.html#adat-istiadat"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="14" r="5"/><circle cx="15" cy="14" r="5"/><path d="M9 4h6l-3 4z"/></svg></span><span class="mt"><strong>Adat Istiadat</strong><small>Pernikahan adat dan lembaga adat</small></span></a>
+            <a href="../budaya.html#kesenian"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></span><span class="mt"><strong>Kesenian</strong><small>Tari, musik, dan sastra</small></span></a>
+            <a href="../budaya.html#kuliner"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 11h16a8 8 0 0 1-16 0ZM8 7c0-2 2-2 2-4M13 7c0-2 2-2 2-4"/></svg></span><span class="mt"><strong>Kuliner</strong><small>Makanan khas Barru</small></span></a>
+          </div>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropdown-toggle" data-page-link="peninggalan" aria-expanded="false" aria-controls="peninggalanMenu">
+          Peninggalan Sejarah <span class="chevron">⌄</span>
+        </button>
+        <div class="dropdown-menu mega satu kanan" id="peninggalanMenu">
+          <a class="menu-feature" href="../peninggalan.html" style="--img-menu-feature:var(--img-menu-peninggalan)">
+            <svg viewBox="0 0 200 130" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="130" fill="#a8d2d1"/><rect y="88" width="200" height="42" fill="#47794d"/><circle cx="160" cy="28" r="13" fill="#f6df94"/><path d="M52 110V58a48 48 0 0 1 96 0v52h-22V60a26 26 0 0 0-52 0v50Z" fill="#e8d6a5" stroke="#6d5238" stroke-width="3"/><rect x="40" y="108" width="120" height="10" fill="#6d5238"/></svg>
+            <span class="feature-text"><strong>Jejak Masa Lalu</strong><small>Situs dan naskah yang masih bertahan.</small></span>
+          </a>
+          <div class="menu-list">
+            <a href="../peninggalan.html#situs"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 21V9l8-5 8 5v12M9 21v-6h6v6M3 21h18"/></svg></span><span class="mt"><strong>Situs dan Bangunan</strong><small>Situs kerajaan dan bangunan kuno</small></span></a>
+            <a href="../peninggalan.html#naskah"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 4h11v13a3 3 0 0 1-3 3H6a3 3 0 0 0 3-3V4ZM7 4a3 3 0 0 0-3 3v1h3"/><path d="M11 9h4M11 13h4"/></svg></span><span class="mt"><strong>Naskah Kuno</strong><small>Lontara dan naskah La Galigo</small></span></a>
+          </div>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropdown-toggle" data-page-link="galeri" aria-expanded="false" aria-controls="galeriMenu">
+          Galeri <span class="chevron">⌄</span>
+        </button>
+        <div class="dropdown-menu mega satu kanan" id="galeriMenu">
+          <a class="menu-feature" href="../galeri.html" style="--img-menu-feature:var(--img-menu-galeri)">
+            <svg viewBox="0 0 200 130" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="130" fill="#2b6b45"/><g transform="rotate(-6 73 61)"><rect x="30" y="28" width="86" height="66" rx="5" fill="#f7f4df" stroke="#a17c28" stroke-width="4"/><path d="M38 84 62 58l20 20 12-12 24 18v10H38Z" fill="#769b68"/></g><g transform="rotate(5 132 70)"><rect x="92" y="38" width="80" height="64" rx="5" fill="#f7f4df" stroke="#a17c28" stroke-width="4"/><circle cx="120" cy="58" r="8" fill="#f6df94"/><path d="m100 94 22-22 16 14 12-10 20 18v6h-70Z" fill="#47794d"/></g></svg>
+            <span class="feature-text"><strong>Barru dalam Gambar</strong><small>Foto dan video dokumentasi.</small></span>
+          </a>
+          <div class="menu-list">
+            <a href="../galeri.html#foto"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="m21 16-5-5-8 8"/></svg></span><span class="mt"><strong>Foto</strong><small>Arsip dan dokumentasi foto</small></span></a>
+            <a href="../galeri.html#video"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3"/></svg></span><span class="mt"><strong>Video</strong><small>Dokumenter dan video pendek</small></span></a>
+          </div>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropdown-toggle" data-page-link="tentang" aria-expanded="false" aria-controls="tentangMenu">
+          Tentang Kami <span class="chevron">⌄</span>
+        </button>
+        <div class="dropdown-menu mega satu kanan" id="tentangMenu">
+          <a class="menu-feature" href="../tentang.html" style="--img-menu-feature:var(--img-menu-tentang)">
+            <svg viewBox="0 0 200 130" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="130" fill="#245c3a"/><circle cx="160" cy="26" r="10" fill="#f6df94"/><path d="M100 40C80 28 56 28 36 36v62c20-8 44-8 64 4ZM100 40c20-12 44-12 64-4v62c-20-8-44-8-64 4Z" fill="#f7f4df" stroke="#a17c28" stroke-width="3"/><path d="M50 52c14-4 32-4 40 0M50 64c14-4 32-4 40 0M110 52c8-4 26-4 40 0M110 64c8-4 26-4 40 0" stroke="#a17c28" stroke-width="2.5" fill="none"/></svg>
+            <span class="feature-text"><strong>Di Balik Situs</strong><small>Tujuan dan tim penyusun.</small></span>
+          </a>
+          <div class="menu-list">
+            <a href="../tentang.html#profil"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg></span><span class="mt"><strong>Profil Situs</strong><small>Tujuan dan sumber rujukan</small></span></a>
+            <a href="../tentang.html#tim"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M16 5a3 3 0 0 1 0 6M18 14c2 .8 3 3 3 6"/></svg></span><span class="mt"><strong>Tim Penyusun</strong><small>Orang di balik situs ini</small></span></a>
+          </div>
+        </div>
+      </div>
+      <a href="index.php" class="nav-link" data-page-link="kontak">Kontak</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="search-btn" id="searchOpen" aria-label="Cari di situs ini">
+        <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="9" r="6"/><path d="m14 14 4 4"/></svg>
+        <span>Cari...</span><kbd>Ctrl K</kbd>
+      </button>
+      <a class="nav-cta" href="../sejarah.html#asal-usul">Mulai Baca</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Buka navigasi" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-modal" role="dialog" aria-modal="true" aria-label="Pencarian">
+      <input id="searchInput" type="search" placeholder="Cari halaman atau bagian sejarah..." autocomplete="off">
+      <ul class="search-results" id="searchResults"></ul>
+    </div>
+  </div>
+
+  <main class="contact-main">
+    <section class="contact-card" aria-labelledby="contact-title">
+      <p class="contact-kicker">Hubungi Kami</p>
+      <h1 id="contact-title">Kirim saran atau koreksi</h1>
+      <p class="contact-intro">Punya masukan tentang informasi sejarah di situs ini? Kirimkan pesan kepada tim penyusun.</p>
+
+      <?php if ($terkirim): ?>
+        <p class="contact-alert success" role="status">Terima kasih. Pesan Anda berhasil dikirim.</p>
+      <?php endif; ?>
+
+      <?php if ($errors): ?>
+        <div class="contact-alert error" role="alert">
+          <p>Pesan belum terkirim:</p>
+          <ul>
+            <?php foreach ($errors as $error): ?>
+              <li><?= e($error) ?></li>
+            <?php endforeach; ?>
+          </ul>
+        </div>
+      <?php endif; ?>
+
+      <form method="post" action="index.php" class="contact-form">
+        <input type="hidden" name="csrf_token" value="<?= e($_SESSION['csrf_token']) ?>">
+        <div class="contact-trap" aria-hidden="true">
+          <label for="company_website">Jangan isi kolom ini</label>
+          <input id="company_website" type="text" name="company_website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <label for="nama">Nama</label>
+        <input id="nama" name="nama" type="text" maxlength="100" autocomplete="name" required value="<?= e($values['nama']) ?>">
+
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" maxlength="254" autocomplete="email" required value="<?= e($values['email']) ?>">
+
+        <label for="subjek">Topik</label>
+        <input id="subjek" name="subjek" type="text" maxlength="150" required value="<?= e($values['subjek']) ?>">
+
+        <label for="pesan">Pesan</label>
+        <textarea id="pesan" name="pesan" rows="6" maxlength="10000" required><?= e($values['pesan']) ?></textarea>
+
+        <button type="submit">Kirim pesan</button>
+      </form>
+
+      <p class="contact-privacy">Pesan disimpan untuk ditinjau oleh pengelola situs. Jangan kirimkan kata sandi atau informasi pribadi yang sensitif.</p>
+    </section>
+  </main>
+  <footer class="footer" id="kontak">
+    <a href="#top">↑ Kembali ke atas</a>
+    <p>SEJARAH BARRU | 08</p>
+  </footer>
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/animasi.js"></script>
+</body>
+</html>

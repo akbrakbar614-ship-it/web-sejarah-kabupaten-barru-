@@ -1,0 +1,27 @@
+# Local environment settings and secrets
+.env
+.env.*
+!.env.example
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local logs, backups, and temporary files
+*.log
+*.bak
+*.tmp
+
+# Generated dependencies
+/vendor/
+/node_modules/
+
+# Local database files (SQL schema and migrations remain tracked)
+*.sqlite
+*.sqlite3
+*.db
+
+# Duplicate nested checkout; the active project is at the repository root
+/Projek-web-sejarah-kabupaten-Barru-/

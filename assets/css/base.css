@@ -139,6 +139,7 @@ a {
 
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 2px;
 
     font-size: 12.5px;
@@ -178,6 +179,18 @@ a {
 .nav-link.active,
 .dropdown-toggle.active {
     color: var(--emas);
+}
+
+@media (min-width: 1920px) {
+    .site-header {
+        height: clamp(76px, 4vw, 92px);
+        padding-left: max(3%, calc((100vw - 1800px) / 2));
+        padding-right: max(3%, calc((100vw - 1800px) / 2));
+    }
+
+    .main-nav {
+        font-size: clamp(13px, .72vw, 15px);
+    }
 }
 
 
@@ -683,7 +696,7 @@ a {
    RESPONSIVE: LAPTOP KECIL
 ===================================================== */
 
-@media (max-width: 1399px) {
+@media (max-width: 1540px) {
 
     .search-btn {
         min-width: 0;
@@ -702,7 +715,7 @@ a {
    RESPONSIVE: TABLET
 ===================================================== */
 
-@media (max-width: 1180px) {
+@media (max-width: 1279px) {
 
     .site-header {
         gap: 12px;
@@ -735,6 +748,7 @@ a {
 
         flex-direction: column;
         align-items: stretch;
+        justify-content: flex-start;
         gap: 0;
 
         padding: 8px 5% 24px;
@@ -793,6 +807,8 @@ a {
     }
 
     .dropdown-menu.mega {
+        width: 100%;
+        min-width: 0;
         grid-template-columns: 1fr;
     }
 

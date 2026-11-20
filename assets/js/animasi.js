@@ -31,6 +31,32 @@
 
   // 2. KELAS JS untuk mengaktifkan animasi CSS.
   document.documentElement.classList.add('js');
+  const body = document.body;
+  if (!reduceMotion) {
+    body.classList.add('page-entering');
+    window.addEventListener('pageshow', () => body.classList.remove('page-leaving'));
+
+    document.addEventListener('click', event => {
+      if (body.classList.contains('page-leaving')) {
+        event.preventDefault();
+        return;
+      }
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      const link = event.target instanceof Element ? event.target.closest('a[href]') : null;
+      if (!link || link.hasAttribute('download') || (link.target && link.target !== '_self')) return;
+
+      const destination = new URL(link.href, window.location.href);
+      if (!['http:', 'https:'].includes(destination.protocol) ||
+          destination.origin !== window.location.origin ||
+          !(/\.(?:html?|php)$/i.test(destination.pathname) || destination.pathname.endsWith('/')) ||
+          (destination.pathname === window.location.pathname && destination.search === window.location.search)) return;
+
+      event.preventDefault();
+      body.classList.add('page-leaving');
+      window.setTimeout(() => window.location.assign(destination.href), 200);
+    });
+  }
+
   if (reduceMotion) {
     document.documentElement.classList.add('motion-reduce');
     return;
@@ -38,19 +64,28 @@
 
   // 3. SCROLL REVEAL + STAGGER untuk kartu.
   const revealSelector = [
-    'main > section:not(.hero)',
+    'main > section:not(.hero):not(.p-hero):not(.t-hero):not(.timeline-section)',
     'main .judul-tengah',
     'main .kartu',
+    'main .tokoh-card',
+    'main .p-card:not(.reveal)',
+    'main .p-more:not(.reveal)',
     'main .section-wrap > *',
+    '.contact-card',
     '.footer'
   ].join(',');
 
-  const revealItems = [...document.querySelectorAll(revealSelector)];
+  const revealItems = [...document.querySelectorAll(revealSelector)].filter(el =>
+    !el.classList.contains('reveal') &&
+    !el.closest('.reveal') &&
+    !el.querySelector('.reveal') &&
+    !el.closest('.timeline-section')
+  );
   revealItems.forEach((el, index) => {
     el.classList.add('anim-reveal');
-    if (el.matches('.kartu')) {
-      const siblingCards = [...el.parentElement.querySelectorAll('.kartu')];
-      el.style.setProperty('--reveal-delay', `${siblingCards.indexOf(el) * 110}ms`);
+    if (el.matches('.kartu, .tokoh-card, .p-card, .p-more')) {
+      const siblingCards = [...el.parentElement.querySelectorAll('.kartu, .tokoh-card, .p-card, .p-more')];
+      el.style.setProperty('--reveal-delay', `${siblingCards.indexOf(el) * 90}ms`);
     } else {
       el.style.setProperty('--reveal-delay', `${(index % 3) * 65}ms`);
     }
@@ -70,16 +105,15 @@
   }
 
   // 4. HERO: animasi teks bertahap saat halaman dibuka.
-  const hero = document.querySelector('.hero');
-  if (hero) {
-    window.requestAnimationFrame(() => hero.classList.add('hero-animasi-mulai'));
-  }
+  const heroes = document.querySelectorAll('.hero, .p-hero, .t-hero');
+  heroes.forEach(hero => hero.classList.add('hero-animasi-mulai'));
 
   // 5. NAVBAR: muncul dari atas dan memiliki status saat halaman digulir.
   const header = document.querySelector('.site-header');
   if (header) {
     header.classList.add('header-animasi');
-    window.requestAnimationFrame(() => header.classList.add('header-siap'));
+    void header.offsetWidth;
+    header.classList.add('header-siap');
 
     let scrollTicking = false;
     const updateHeader = () => {
@@ -136,11 +170,13 @@
   progress.setAttribute('aria-hidden', 'true');
   document.body.appendChild(progress);
 
+  let checkAnimationsInView = () => {};
   let progressTicking = false;
   const updateProgress = () => {
     const scrollable = document.documentElement.scrollHeight - window.innerHeight;
     const percent = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
     progress.style.setProperty('--scroll-progress', `${Math.min(100, Math.max(0, percent))}%`);
+    checkAnimationsInView();
     progressTicking = false;
   };
   window.addEventListener('scroll', () => {
@@ -153,15 +189,18 @@
   updateProgress();
 
   // 8. PARALLAX ringan pada latar hero. Nonaktif di layar kecil.
-  const heroBackground = document.querySelector('.hero-kiri');
-  if (heroBackground && window.matchMedia('(min-width: 768px)').matches) {
+  const parallaxItems = document.querySelectorAll('.hero-kiri, .p-hero .p-pola');
+  if (parallaxItems.length && window.matchMedia('(min-width: 768px)').matches) {
     let parallaxTicking = false;
     const updateParallax = () => {
-      const rect = hero.getBoundingClientRect();
-      if (rect.bottom > 0 && rect.top < window.innerHeight) {
-        const offset = Math.max(-22, Math.min(22, rect.top * -0.045));
-        heroBackground.style.setProperty('--hero-parallax-y', `${offset}px`);
-      }
+      parallaxItems.forEach(item => {
+        const section = item.closest('.hero, .p-hero');
+        if (!section) return;
+        const rect = section.getBoundingClientRect();
+        if (rect.bottom <= 0 || rect.top >= window.innerHeight) return;
+        const offset = Math.max(-18, Math.min(18, rect.top * -0.035));
+        item.style.setProperty('--hero-parallax-y', `${offset}px`);
+      });
       parallaxTicking = false;
     };
     window.addEventListener('scroll', () => {
@@ -174,7 +213,9 @@
   }
 
   // 9. ZOOM HALUS pada gambar ketika bagian terkait terlihat.
-  const visualItems = document.querySelectorAll('.mengenal .foto, .kartu .gbr');
+  const visualItems = document.querySelectorAll(
+    '.mengenal .foto, .kartu .gbr, .p-card .p-img, .p-card .p-foto-img, .tokoh-card .tokoh-foto, .g-img'
+  );
   if ('IntersectionObserver' in window) {
     const visualObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
@@ -191,9 +232,53 @@
     visualItems.forEach(el => el.classList.add('gambar-terlihat'));
   }
 
-  // 10. MAGNETIC MICRO-INTERACTION ringan untuk tombol utama.
+  // 10. GARIS DAN TITIK TIMELINE: animasikan sekali ketika masuk viewport.
+  const timeline = document.querySelector('.timeline');
+  const timelineItems = timeline ? timeline.querySelectorAll('.timeline-item') : [];
+  if (timeline && 'IntersectionObserver' in window) {
+    const timelineObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add(entry.target === timeline ? 'timeline-terlihat' : 'timeline-item-terlihat');
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.12 });
+    timelineObserver.observe(timeline);
+    timelineItems.forEach(item => timelineObserver.observe(item));
+  } else if (timeline) {
+    timeline.classList.add('timeline-terlihat');
+    timelineItems.forEach(item => item.classList.add('timeline-item-terlihat'));
+  }
+
+  const legacyRevealItems = document.querySelectorAll('.reveal');
+  checkAnimationsInView = () => {
+    const revealBoundary = window.innerHeight * 0.88;
+    revealItems.forEach(item => {
+      if (item.classList.contains('is-visible')) return;
+      const rect = item.getBoundingClientRect();
+      if (rect.top < revealBoundary && rect.bottom > 0) item.classList.add('is-visible');
+    });
+    legacyRevealItems.forEach(item => {
+      if (item.classList.contains('in')) return;
+      const rect = item.getBoundingClientRect();
+      if (rect.top < revealBoundary && rect.bottom > 0) item.classList.add('in');
+    });
+    if (!timeline) return;
+
+    const timelineRect = timeline.getBoundingClientRect();
+    if (timelineRect.top < window.innerHeight && timelineRect.bottom > 0) {
+      timeline.classList.add('timeline-terlihat');
+    }
+    timelineItems.forEach(item => {
+      const rect = item.getBoundingClientRect();
+      if (rect.top < revealBoundary && rect.bottom > 0) item.classList.add('timeline-item-terlihat');
+    });
+  };
+  checkAnimationsInView();
+
+  // 11. MAGNETIC MICRO-INTERACTION ringan untuk tombol utama.
   const magneticItems = document.querySelectorAll('.nav-cta, .hero .btn, .mengenal .btn');
-  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  if (window.matchMedia('(min-width: 768px) and (hover: hover) and (pointer: fine)').matches) {
     magneticItems.forEach(item => {
       item.classList.add('magnetic-ready');
       item.addEventListener('pointermove', event => {
@@ -210,10 +295,48 @@
     });
   }
 
-  // 11. ACTIVE NAV LINK untuk tautan yang mengarah ke bagian halaman.
+  // 12. TILT 3D halus untuk kartu tokoh pada perangkat desktop.
+  if (window.matchMedia('(min-width: 768px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches) {
+    document.querySelectorAll('.tokoh-card:not(.kosong)').forEach(card => {
+      let frame = 0;
+      let tiltX = 0;
+      let tiltY = 0;
+
+      card.addEventListener('pointermove', event => {
+        const rect = card.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width * 2 - 1;
+        const y = (event.clientY - rect.top) / rect.height * 2 - 1;
+        tiltX = Math.max(-1, Math.min(1, y)) * -4;
+        tiltY = Math.max(-1, Math.min(1, x)) * 4;
+
+        if (frame) return;
+        frame = window.requestAnimationFrame(() => {
+          card.style.setProperty('--tilt-x', `${tiltX}deg`);
+          card.style.setProperty('--tilt-y', `${tiltY}deg`);
+          frame = 0;
+        });
+      });
+
+      card.addEventListener('pointerleave', () => {
+        if (frame) window.cancelAnimationFrame(frame);
+        frame = 0;
+        card.style.setProperty('--tilt-x', '0deg');
+        card.style.setProperty('--tilt-y', '0deg');
+      });
+    });
+  }
+
+  // 13. ACTIVE NAV LINK untuk tautan yang mengarah ke bagian halaman.
   const sectionLinks = [...document.querySelectorAll('.main-nav a[href*="#"]')];
   const pageSections = sectionLinks
-    .map(link => document.querySelector(link.getAttribute('href').split('#')[1] ? `#${CSS.escape(link.getAttribute('href').split('#')[1])}` : ''))
+    .map(link => {
+      const destination = new URL(link.href, window.location.href);
+      return destination.origin === window.location.origin &&
+        destination.pathname === window.location.pathname &&
+        destination.hash
+        ? document.getElementById(decodeURIComponent(destination.hash.slice(1)))
+        : null;
+    })
     .filter(Boolean);
 
   if (pageSections.length && 'IntersectionObserver' in window) {

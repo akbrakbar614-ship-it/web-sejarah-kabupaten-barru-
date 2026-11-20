@@ -7,6 +7,7 @@
   const nav = $("#mainNav");
   const burger = $("#menuToggle");
   const dropdowns = $$(".dropdown");
+  const rootPrefix = document.body.dataset.rootPrefix || "";
 
   /* Tahun di footer */
   const tahun = $("#tahun");
@@ -78,7 +79,7 @@
     ["Naskah Kuno", "Lontara dan naskah peninggalan", "peninggalan.html#naskah"],
     ["Galeri", "Foto dan video", "galeri.html"],
     ["Tentang Kami", "Profil situs dan tim penyusun", "tentang.html"],
-    ["Kontak", "Email dan telepon", "#kontak"]
+    ["Kontak", "Kirim saran atau koreksi", "kontak/index.php"]
   ];
   const overlay = $("#searchOverlay"), input = $("#searchInput"), hasil = $("#searchResults");
 
@@ -95,7 +96,7 @@
     }
     cocok.forEach(([judul, ket, href]) => {
       const li = document.createElement("li"), a = document.createElement("a"), s = document.createElement("small");
-      a.href = href; a.textContent = judul; s.textContent = ket;
+      a.href = rootPrefix + href; a.textContent = judul; s.textContent = ket;
       a.appendChild(s); li.appendChild(a); hasil.appendChild(li);
     });
   }
